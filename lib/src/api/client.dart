@@ -40,11 +40,16 @@ final class PaddleClient {
 
   PricesClient get prices => _prices!;
 
+  CustomersClient? _customers;
+
+  CustomersClient get customers => _customers!;
+
   void _createClients({required bool enableLogging, required bool sandbox}) {
     final List<ChopperService> services = [
       SubscriptionsApi.create(),
       ProductsApi.create(),
       PricesApi.create(),
+      CustomersApi.create(),
     ];
     _chopperClient = ChopperClient(
       baseUrl: Uri.parse(sandbox ? sandboxUrl : liveUrl),
@@ -62,6 +67,7 @@ final class PaddleClient {
     _subscriptions = SubscriptionsClient(_chopperClient.getService());
     _products = ProductsClient(_chopperClient.getService());
     _prices = PricesClient(_chopperClient.getService());
+    _customers = CustomersClient(_chopperClient.getService());
 
     if (enableLogging) {
       Logger.root.level = Level.ALL;
