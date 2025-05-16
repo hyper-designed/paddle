@@ -1,6 +1,1 @@
-enum Interval {
-  day,
-  week,
-  month,
-  year;
-}
+enum Interval { day, week, month, year }
