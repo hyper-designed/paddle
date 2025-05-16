@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:paddle/src/model/entity_status.dart';
-import 'package:paddle/src/model/unit_price.dart';
 
-import 'billing_cycle.dart';
 import 'models.dart';
 
 part 'price.g.dart';
@@ -87,11 +84,11 @@ final class Price extends ResourceData {
 
   /// How often this price should be charged.
   @JsonKey(name: 'billing_cycle')
-  final BillingCycle? billingCycle;
+  final Period? billingCycle;
 
   /// Trial period for the product.
   @JsonKey(name: 'trial_period')
-  final TrialPeriod? trialPeriod;
+  final Period? trialPeriod;
 
   /// How tax is calculated for this price.
   @JsonKey(name: 'tax_mode')
@@ -157,25 +154,6 @@ final class Price extends ResourceData {
     status,
     product,
   ];
-}
-
-@JsonSerializable()
-final class TrialPeriod with EquatableMixin {
-  /// Amount of time.
-  final int frequency;
-
-  /// Unit of time.
-  final Interval interval;
-
-  const TrialPeriod({required this.frequency, required this.interval});
-
-  factory TrialPeriod.fromJson(Map<String, dynamic> json) =>
-      _$TrialPeriodFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TrialPeriodToJson(this);
-
-  @override
-  List<Object?> get props => [frequency, interval];
 }
 
 /// Limits on how many times the related product can be purchased at this price.

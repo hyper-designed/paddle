@@ -65,9 +65,7 @@ Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
   billingCycle:
       json['billing_cycle'] == null
           ? null
-          : BillingCycle.fromJson(
-            json['billing_cycle'] as Map<String, dynamic>,
-          ),
+          : Period.fromJson(json['billing_cycle'] as Map<String, dynamic>),
   scheduledChange:
       json['scheduled_change'] == null
           ? null

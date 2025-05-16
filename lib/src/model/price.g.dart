@@ -28,13 +28,11 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
   billingCycle:
       json['billing_cycle'] == null
           ? null
-          : BillingCycle.fromJson(
-            json['billing_cycle'] as Map<String, dynamic>,
-          ),
+          : Period.fromJson(json['billing_cycle'] as Map<String, dynamic>),
   trialPeriod:
       json['trial_period'] == null
           ? null
-          : TrialPeriod.fromJson(json['trial_period'] as Map<String, dynamic>),
+          : Period.fromJson(json['trial_period'] as Map<String, dynamic>),
   taxMode: $enumDecode(_$TaxModeEnumMap, json['tax_mode']),
   unitPrice: UnitPrice.fromJson(json['unit_price'] as Map<String, dynamic>),
   unitPriceOverrides:
@@ -90,24 +88,6 @@ const _$TaxModeEnumMap = {
 const _$EntityStatusEnumMap = {
   EntityStatus.archived: 'archived',
   EntityStatus.active: 'active',
-};
-
-TrialPeriod _$TrialPeriodFromJson(Map<String, dynamic> json) => TrialPeriod(
-  frequency: (json['frequency'] as num).toInt(),
-  interval: $enumDecode(_$IntervalEnumMap, json['interval']),
-);
-
-Map<String, dynamic> _$TrialPeriodToJson(TrialPeriod instance) =>
-    <String, dynamic>{
-      'frequency': instance.frequency,
-      'interval': _$IntervalEnumMap[instance.interval]!,
-    };
-
-const _$IntervalEnumMap = {
-  Interval.day: 'day',
-  Interval.week: 'week',
-  Interval.month: 'month',
-  Interval.year: 'year',
 };
 
 Quantity _$QuantityFromJson(Map<String, dynamic> json) => Quantity(

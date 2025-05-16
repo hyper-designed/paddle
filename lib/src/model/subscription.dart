@@ -1,10 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:paddle/src/model/item.dart';
 
 import '../../paddle.dart';
 import '../utils.dart';
-import 'billing_cycle.dart';
 
 part 'subscription.g.dart';
 
@@ -183,7 +181,7 @@ final class Subscription extends ResourceData {
   /// How often this subscription renews. Set automatically by Paddle based
   /// on the prices on this subscription.
   @JsonKey(name: 'billing_cycle')
-  final BillingCycle? billingCycle;
+  final Period? billingCycle;
 
   /// Change that's scheduled to be applied to a subscription.
   /// Use the pause subscription, cancel subscription, and resume subscription
@@ -343,6 +341,13 @@ final class PaymentTerms with EquatableMixin {
 
   /// Amount of time.
   final int frequency;
+
+  Duration get duration => switch (interval) {
+    Interval.day => Duration(days: frequency),
+    Interval.week => Duration(days: frequency * 7),
+    Interval.month => Duration(days: frequency * 30),
+    Interval.year => Duration(days: frequency * 365),
+  };
 
   const PaymentTerms({required this.interval, required this.frequency});
 
