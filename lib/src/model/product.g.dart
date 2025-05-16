@@ -32,6 +32,10 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           : ImportMeta.fromJson(json['import_meta'] as Map<String, dynamic>),
   createdAt: json['created_at'] as String,
   updatedAt: json['updated_at'] as String,
+  prices:
+      (json['prices'] as List<dynamic>?)
+          ?.map((e) => Price.fromJson(e as Map<String, dynamic>))
+          .toList(),
 );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -46,6 +50,7 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
   'type': _$ProductTypeEnumMap[instance.type]!,
   'tax_category': _$TaxCategoryEnumMap[instance.taxCategory]!,
   'image_url': instance.imageUrl,
+  'prices': instance.prices,
 };
 
 const _$EntityStatusEnumMap = {

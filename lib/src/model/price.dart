@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:paddle/src/model/entity_status.dart';
 import 'package:paddle/src/model/unit_price.dart';
 
-import '../utils.dart';
 import 'billing_cycle.dart';
 import 'models.dart';
 
@@ -115,6 +114,8 @@ final class Price extends ResourceData {
   /// Whether this entity can be used in Paddle.
   final EntityStatus status;
 
+  final Product? product;
+
   const Price({
     required super.id,
     required this.productId,
@@ -132,6 +133,7 @@ final class Price extends ResourceData {
     super.importMeta,
     required super.createdAt,
     required super.updatedAt,
+    this.product,
   });
 
   @override
@@ -153,6 +155,7 @@ final class Price extends ResourceData {
     unitPriceOverrides,
     quantity,
     status,
+    product,
   ];
 }
 

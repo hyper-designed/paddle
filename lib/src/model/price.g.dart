@@ -50,6 +50,10 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
           : ImportMeta.fromJson(json['import_meta'] as Map<String, dynamic>),
   createdAt: json['created_at'] as String,
   updatedAt: json['updated_at'] as String,
+  product:
+      json['product'] == null
+          ? null
+          : Product.fromJson(json['product'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
@@ -69,6 +73,7 @@ Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
   'unit_price_overrides': instance.unitPriceOverrides,
   'quantity': instance.quantity,
   'status': _$EntityStatusEnumMap[instance.status]!,
+  'product': instance.product,
 };
 
 const _$PriceTypeEnumMap = {

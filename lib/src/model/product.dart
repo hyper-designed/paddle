@@ -115,6 +115,8 @@ final class Product extends ResourceData {
   @JsonKey(name: 'image_url')
   final String? imageUrl;
 
+  final List<Price>? prices;
+
   const Product({
     required super.id,
     required this.name,
@@ -127,6 +129,7 @@ final class Product extends ResourceData {
     super.importMeta,
     required super.createdAt,
     required super.updatedAt,
+    this.prices,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -147,5 +150,6 @@ final class Product extends ResourceData {
     type,
     taxCategory,
     imageUrl,
+    prices,
   ];
 }

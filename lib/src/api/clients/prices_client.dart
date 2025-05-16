@@ -39,7 +39,7 @@ final class PricesClient {
 
   PricesClient(this.api);
 
-  Future<Resource<Price>> getProduct(
+  Future<Resource<Price>> getPrice(
     String id, {
     List<PriceInclude>? include,
   }) async {
@@ -57,7 +57,7 @@ final class PricesClient {
     );
   }
 
-  Future<PriceList> listProducts({
+  Future<PriceList> listPrices({
     String? after,
     List<String>? id,
     List<PriceInclude>? include,
