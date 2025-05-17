@@ -14,7 +14,8 @@ enum TransactionInclude {
   /// Only included where a transaction has adjustments.
   adjustments('adjustments'),
 
-  /// Include an object that includes totals for all adjustments against this transaction.
+  /// Include an object that includes totals for all adjustments against this
+  /// transaction.
   adjustmentsTotals('adjustments_totals'),
 
   /// Include an array of available payment methods for this transaction.
@@ -73,7 +74,8 @@ sealed class MiniTransactionItem with EquatableMixin {
 
 /// A transaction item that uses an existing catalog price.
 final class CatalogTransactionItem extends MiniTransactionItem {
-  /// Paddle ID of an existing catalog price to add to this transaction, prefixed with pri_.
+  /// Paddle ID of an existing catalog price to add to this transaction,
+  /// prefixed with pri_.
   final String priceId;
 
   /// Quantity of this item on the transaction.
@@ -103,7 +105,8 @@ final class NonCatalogProductTransactionItem extends MiniTransactionItem {
 
   /// Creates a non-catalog transaction item for an existing product.
   ///
-  /// This factory constructs a properly formatted price object with all required fields.
+  /// This factory constructs a properly formatted price object with all
+  /// required fields.
   factory NonCatalogProductTransactionItem.create({
     required String description,
     required String productId,
@@ -158,7 +161,8 @@ final class NonCatalogCompleteTransactionItem extends MiniTransactionItem {
 
   /// Creates a complete non-catalog transaction item with a custom product.
   ///
-  /// This factory constructs a properly formatted price and product object with all required fields.
+  /// This factory constructs a properly formatted price and product object
+  /// with all required fields.
   factory NonCatalogCompleteTransactionItem.create({
     // Price fields
     required String description,
@@ -282,7 +286,8 @@ final class TransactionsClient {
 
   /// Creates a new transaction.
   ///
-  /// Transactions are typically created with the status of draft or ready initially.
+  /// Transactions are typically created with the status of draft or ready
+  /// initially.
   Future<Resource<Transaction>> createTransaction({
     required List<MiniTransactionItem> items,
     TransactionStatus? status,
