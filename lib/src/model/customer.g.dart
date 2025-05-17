@@ -25,8 +25,12 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) => Customer(
   status: $enumDecode(_$EntityStatusEnumMap, json['status']),
   customData: json['custom_data'] as Map<String, dynamic>?,
   locale: json['locale'] as String,
-  createdAt: json['created_at'] as String,
-  updatedAt: json['updated_at'] as String,
+  createdAt: const DateTimeISO8601Converter().fromJson(
+    json['created_at'] as String,
+  ),
+  updatedAt: const DateTimeISO8601Converter().fromJson(
+    json['updated_at'] as String,
+  ),
   importMeta:
       json['import_meta'] == null
           ? null
@@ -36,8 +40,8 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) => Customer(
 Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
   'id': instance.id,
   'custom_data': instance.customData,
-  'created_at': instance.createdAt,
-  'updated_at': instance.updatedAt,
+  'created_at': const DateTimeISO8601Converter().toJson(instance.createdAt),
+  'updated_at': const DateTimeISO8601Converter().toJson(instance.updatedAt),
   'import_meta': instance.importMeta,
   'name': instance.name,
   'email': instance.email,

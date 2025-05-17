@@ -37,13 +37,13 @@ abstract base class ResourceData with EquatableMixin {
   /// Set automatically by Paddle.
   @DateTimeISO8601Converter()
   @JsonKey(name: 'created_at')
-  final String createdAt;
+  final DateTime createdAt;
 
   /// RFC 3339 datetime string of when this entity was updated.
   /// Set automatically by Paddle.
   @DateTimeISO8601Converter()
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final DateTime updatedAt;
 
   /// Import information for this entity. null if this entity is not imported.
   @JsonKey(name: 'import_meta')

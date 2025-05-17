@@ -46,8 +46,12 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
       json['import_meta'] == null
           ? null
           : ImportMeta.fromJson(json['import_meta'] as Map<String, dynamic>),
-  createdAt: json['created_at'] as String,
-  updatedAt: json['updated_at'] as String,
+  createdAt: const DateTimeISO8601Converter().fromJson(
+    json['created_at'] as String,
+  ),
+  updatedAt: const DateTimeISO8601Converter().fromJson(
+    json['updated_at'] as String,
+  ),
   product:
       json['product'] == null
           ? null
@@ -57,8 +61,8 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
 Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
   'id': instance.id,
   'custom_data': instance.customData,
-  'created_at': instance.createdAt,
-  'updated_at': instance.updatedAt,
+  'created_at': const DateTimeISO8601Converter().toJson(instance.createdAt),
+  'updated_at': const DateTimeISO8601Converter().toJson(instance.updatedAt),
   'import_meta': instance.importMeta,
   'product_id': instance.productId,
   'description': instance.description,

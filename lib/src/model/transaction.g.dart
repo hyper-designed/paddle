@@ -21,8 +21,12 @@ Map<String, dynamic> _$TransactionListToJson(TransactionList instance) =>
 Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
   id: json['id'] as String,
   customData: json['custom_data'] as Map<String, dynamic>?,
-  createdAt: json['created_at'] as String,
-  updatedAt: json['updated_at'] as String,
+  createdAt: const DateTimeISO8601Converter().fromJson(
+    json['created_at'] as String,
+  ),
+  updatedAt: const DateTimeISO8601Converter().fromJson(
+    json['updated_at'] as String,
+  ),
   status: $enumDecode(_$TransactionStatusEnumMap, json['status']),
   customerId: json['customer_id'] as String?,
   addressId: json['address_id'] as String?,
@@ -70,8 +74,8 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
     <String, dynamic>{
       'id': instance.id,
       'custom_data': instance.customData,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
+      'created_at': const DateTimeISO8601Converter().toJson(instance.createdAt),
+      'updated_at': const DateTimeISO8601Converter().toJson(instance.updatedAt),
       'import_meta': instance.importMeta,
       'status': _$TransactionStatusEnumMap[instance.status]!,
       'customer_id': instance.customerId,
