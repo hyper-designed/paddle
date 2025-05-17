@@ -59,7 +59,7 @@ Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
   currentBillingPeriod:
       json['current_billing_period'] == null
           ? null
-          : CurrentBillingPeriod.fromJson(
+          : BillingPeriod.fromJson(
             json['current_billing_period'] as Map<String, dynamic>,
           ),
   billingCycle:
@@ -214,22 +214,6 @@ const _$IntervalEnumMap = {
   Interval.week: 'week',
   Interval.month: 'month',
   Interval.year: 'year',
-};
-
-CurrentBillingPeriod _$CurrentBillingPeriodFromJson(
-  Map<String, dynamic> json,
-) => CurrentBillingPeriod(
-  startsAt: const DateTimeISO8601Converter().fromJson(
-    json['starts_at'] as String,
-  ),
-  endsAt: const DateTimeISO8601Converter().fromJson(json['ends_at'] as String),
-);
-
-Map<String, dynamic> _$CurrentBillingPeriodToJson(
-  CurrentBillingPeriod instance,
-) => <String, dynamic>{
-  'starts_at': const DateTimeISO8601Converter().toJson(instance.startsAt),
-  'ends_at': const DateTimeISO8601Converter().toJson(instance.endsAt),
 };
 
 ScheduledChange _$ScheduledChangeFromJson(Map<String, dynamic> json) =>

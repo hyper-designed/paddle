@@ -176,7 +176,7 @@ final class Subscription extends ResourceData {
   /// Paddle based on the billing cycle. null for paused and canceled
   /// subscriptions.
   @JsonKey(name: 'current_billing_period')
-  final CurrentBillingPeriod? currentBillingPeriod;
+  final BillingPeriod? currentBillingPeriod;
 
   /// How often this subscription renews. Set automatically by Paddle based
   /// on the prices on this subscription.
@@ -204,20 +204,20 @@ final class Subscription extends ResourceData {
     required this.status,
     required this.customerId,
     required this.addressId,
-    required this.businessId,
+    this.businessId,
     required this.currencyCode,
-    required this.startedAt,
-    required this.firstBilledAt,
-    required this.nextBilledAt,
-    required this.pausedAt,
-    required this.canceledAt,
-    required this.discount,
+    this.startedAt,
+    this.firstBilledAt,
+    this.nextBilledAt,
+    this.pausedAt,
+    this.canceledAt,
+    this.discount,
     required this.collectionMode,
-    required this.billingDetails,
-    required this.currentBillingPeriod,
-    required this.billingCycle,
-    required this.scheduledChange,
-    required this.managementUrls,
+    this.billingDetails,
+    this.currentBillingPeriod,
+    this.billingCycle,
+    this.scheduledChange,
+    this.managementUrls,
     required this.items,
     required super.customData,
     super.importMeta,
@@ -276,11 +276,7 @@ final class Discount with EquatableMixin {
   @DateTimeISO8601Converter()
   final DateTime? startsAt;
 
-  const Discount({
-    required this.endsAt,
-    required this.id,
-    required this.startsAt,
-  });
+  const Discount({this.endsAt, required this.id, this.startsAt});
 
   factory Discount.fromJson(Map<String, dynamic> json) =>
       _$DiscountFromJson(json);
@@ -316,7 +312,7 @@ final class BillingDetails with EquatableMixin {
     required this.paymentTerms,
     required this.enableCheckout,
     required this.purchaseOrderNumber,
-    required this.additionalInformation,
+    this.additionalInformation,
   });
 
   factory BillingDetails.fromJson(Map<String, dynamic> json) =>
@@ -358,31 +354,6 @@ final class PaymentTerms with EquatableMixin {
 
   @override
   List<Object?> get props => [interval, frequency];
-}
-
-/// Current billing period for this subscription. Set automatically by Paddle
-/// based on the billing cycle. null for paused and canceled subscriptions.
-@JsonSerializable()
-final class CurrentBillingPeriod with EquatableMixin {
-  /// RFC 3339 datetime string of when this period starts.
-  @JsonKey(name: 'starts_at')
-  @DateTimeISO8601Converter()
-  final DateTime startsAt;
-
-  /// RFC 3339 datetime string of when this period ends.
-  @JsonKey(name: 'ends_at')
-  @DateTimeISO8601Converter()
-  final DateTime endsAt;
-
-  const CurrentBillingPeriod({required this.startsAt, required this.endsAt});
-
-  factory CurrentBillingPeriod.fromJson(Map<String, dynamic> json) =>
-      _$CurrentBillingPeriodFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CurrentBillingPeriodToJson(this);
-
-  @override
-  List<Object?> get props => [startsAt, endsAt];
 }
 
 /// Change that's scheduled to be applied to a subscription.

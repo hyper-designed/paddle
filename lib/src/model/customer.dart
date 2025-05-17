@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../paddle.dart';
-import 'entity_status.dart';
 
 part 'customer.g.dart';
 
@@ -52,7 +51,7 @@ final class Customer extends ResourceData {
 
   const Customer({
     required super.id,
-    required this.name,
+    this.name,
     required this.email,
     required this.marketingConsent,
     required this.status,

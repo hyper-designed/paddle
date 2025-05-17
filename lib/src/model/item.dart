@@ -70,9 +70,9 @@ final class Item with EquatableMixin {
     required this.recurring,
     required this.createdAt,
     required this.updatedAt,
-    required this.previouslyBilledAt,
-    required this.nextBilledAt,
-    required this.trialDates,
+    this.previouslyBilledAt,
+    this.nextBilledAt,
+    this.trialDates,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

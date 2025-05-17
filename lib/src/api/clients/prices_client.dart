@@ -1,4 +1,3 @@
-import '../../model/entity_status.dart';
 import '../../model/models.dart';
 import '../../model/order_by.dart';
 import '../endpoints/prices_api.dart';

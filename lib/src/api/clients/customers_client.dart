@@ -1,5 +1,3 @@
-import 'package:paddle/src/model/entity_status.dart';
-
 import '../../model/models.dart';
 import '../../model/order_by.dart';
 import '../endpoints/customers_api.dart';

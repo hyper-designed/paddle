@@ -119,11 +119,11 @@ final class Product extends ResourceData {
   const Product({
     required super.id,
     required this.name,
-    required this.description,
+    this.description,
     required this.status,
     required this.type,
     required this.taxCategory,
-    required this.imageUrl,
+    this.imageUrl,
     required super.customData,
     super.importMeta,
     required super.createdAt,

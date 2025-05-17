@@ -26,7 +26,6 @@ final class Resource<T extends ResourceData> with EquatableMixin {
   List<Object?> get props => [data, meta];
 }
 
-@JsonSerializable(createFactory: false)
 abstract base class ResourceData with EquatableMixin {
   final String id;
 
@@ -52,7 +51,7 @@ abstract base class ResourceData with EquatableMixin {
 
   const ResourceData({
     required this.id,
-    required this.customData,
+    this.customData,
     required this.createdAt,
     required this.updatedAt,
     this.importMeta,
@@ -71,7 +70,7 @@ final class ResourceMeta with EquatableMixin {
 
   final Page? pagination;
 
-  const ResourceMeta({required this.requestId, required this.pagination});
+  const ResourceMeta({required this.requestId, this.pagination});
 
   factory ResourceMeta.fromJson(Map<String, dynamic> json) =>
       _$ResourceMetaFromJson(json);
