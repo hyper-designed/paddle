@@ -118,6 +118,11 @@ final class Subscription extends ResourceData {
   @JsonKey(name: 'business_id')
   final String? businessId;
 
+  /// Paddle ID of the transaction that this subscription is for. This is not
+  /// always available. This is only available when passed through webhook
+  /// events.
+  final String? transactionId;
+
   /// Supported three-letter ISO 4217 currency code. Transactions for this
   /// subscription are created in this currency. Must be USD, EUR, or GBP
   /// if collection_mode is manual.
@@ -205,6 +210,7 @@ final class Subscription extends ResourceData {
     required this.customerId,
     required this.addressId,
     this.businessId,
+    this.transactionId,
     required this.currencyCode,
     this.startedAt,
     this.firstBilledAt,
@@ -238,6 +244,7 @@ final class Subscription extends ResourceData {
     customerId,
     addressId,
     businessId,
+    transactionId,
     currencyCode,
     startedAt,
     firstBilledAt,
