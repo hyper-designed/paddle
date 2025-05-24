@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../paddle.dart';
+import '../utils.dart';
 
 part 'product.g.dart';
 

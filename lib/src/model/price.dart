@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../utils.dart';
 import 'models.dart';
 
 part 'price.g.dart';

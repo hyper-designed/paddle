@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../paddle.dart';
 import '../utils.dart';
-import 'payment_method.dart';
 
 part 'transaction.g.dart';
 
