@@ -5,7 +5,8 @@ import 'package:chopper/chopper.dart';
 class PaddleEssentialHeadersInterceptor implements Interceptor {
   @override
   FutureOr<Response<BodyType>> intercept<BodyType>(Chain<BodyType> chain) {
-    final headers = <String, String>{'Paddle-Version': '1'};
+    final headers = Map<String, String>.from(chain.request.headers);
+    headers['Paddle-Version'] = '1';
 
     final method = chain.request.method.toUpperCase();
     if (method == 'POST' || method == 'PUT' || method == 'PATCH') {
@@ -24,9 +25,10 @@ class PaddleAuthHeadersInterceptor implements Interceptor {
 
   @override
   FutureOr<Response<BodyType>> intercept<BodyType>(Chain<BodyType> chain) {
-    final request = chain.request.copyWith(
-      headers: <String, String>{'Authorization': 'Bearer $apiKey'},
-    );
+    final headers = Map<String, String>.from(chain.request.headers);
+    headers['Authorization'] = 'Bearer $apiKey';
+
+    final request = chain.request.copyWith(headers: headers);
     return chain.proceed(request);
   }
 }
