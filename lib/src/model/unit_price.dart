@@ -7,7 +7,8 @@ part 'unit_price.g.dart';
 /// located in countries where you have unit_price_overrides.
 @JsonSerializable()
 class UnitPrice with EquatableMixin {
-  /// Amount in the lowest denomination for the currency, e.g. 10 USD = 1000 (cents).
+  /// Amount in the lowest denomination for the currency,
+  /// e.g. 10 USD = 1000 (cents).
   /// Although represented as a string, this value must be a valid integer.
   final String amount;
 
@@ -20,7 +21,12 @@ class UnitPrice with EquatableMixin {
   factory UnitPrice.fromJson(Map<String, dynamic> json) =>
       _$UnitPriceFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UnitPriceToJson(this);
+  Map<String, dynamic> toJson() {
+    final json = _$UnitPriceToJson(this);
+    // Convert amount from string to integer for API compatibility
+    json['amount'] = int.parse(amount);
+    return json;
+  }
 
   @override
   List<Object?> get props => [amount, currencyCode];

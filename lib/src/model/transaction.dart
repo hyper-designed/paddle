@@ -282,20 +282,22 @@ final class Transaction extends ResourceData {
 
 @JsonSerializable()
 final class TransactionItem with EquatableMixin {
-  /// Paddle ID for the price to add to this transaction, prefixed with pri_.
-  @JsonKey(name: 'price_id')
-  final String priceId;
+  /// Represents a price entity.
+  final Price price;
 
   /// Quantity of this item on the transaction.
   final int quantity;
 
-  /// Represents a price entity.
-  final Price price;
+  /// How proration was calculated for this item.
+  /// Populated when a transaction is created from a subscription change,
+  /// where proration_billing_mode was prorated_immediately or
+  /// prorated_next_billing_period. Set automatically by Paddle.
+  final Proration? proration;
 
   const TransactionItem({
-    required this.priceId,
-    required this.quantity,
     required this.price,
+    required this.quantity,
+    required this.proration,
   });
 
   factory TransactionItem.fromJson(Map<String, dynamic> json) =>
@@ -304,7 +306,7 @@ final class TransactionItem with EquatableMixin {
   Map<String, dynamic> toJson() => _$TransactionItemToJson(this);
 
   @override
-  List<Object?> get props => [priceId, quantity, price];
+  List<Object?> get props => [price, quantity, proration];
 }
 
 /// How proration was calculated for this item.

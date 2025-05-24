@@ -139,16 +139,19 @@ Json? _$JsonConverterToJson<Json, Value>(
 
 TransactionItem _$TransactionItemFromJson(Map<String, dynamic> json) =>
     TransactionItem(
-      priceId: json['price_id'] as String,
-      quantity: (json['quantity'] as num).toInt(),
       price: Price.fromJson(json['price'] as Map<String, dynamic>),
+      quantity: (json['quantity'] as num).toInt(),
+      proration:
+          json['proration'] == null
+              ? null
+              : Proration.fromJson(json['proration'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TransactionItemToJson(TransactionItem instance) =>
     <String, dynamic>{
-      'price_id': instance.priceId,
-      'quantity': instance.quantity,
       'price': instance.price,
+      'quantity': instance.quantity,
+      'proration': instance.proration,
     };
 
 Proration _$ProrationFromJson(Map<String, dynamic> json) => Proration(
