@@ -5,9 +5,13 @@ import 'package:chopper/chopper.dart';
 class PaddleEssentialHeadersInterceptor implements Interceptor {
   @override
   FutureOr<Response<BodyType>> intercept<BodyType>(Chain<BodyType> chain) {
-    final request = chain.request.copyWith(
-      headers: {'Paddle-Version': '1', 'Content-Type': 'application/json'},
-    );
+    final headers = <String, String>{'Paddle-Version': '1'};
+
+    if (chain.request.body != null) {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    final request = chain.request.copyWith(headers: headers);
     return chain.proceed(request);
   }
 }
