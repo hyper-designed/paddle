@@ -7,7 +7,8 @@ class PaddleEssentialHeadersInterceptor implements Interceptor {
   FutureOr<Response<BodyType>> intercept<BodyType>(Chain<BodyType> chain) {
     final headers = <String, String>{'Paddle-Version': '1'};
 
-    if (chain.request.body != null) {
+    final method = chain.request.method.toUpperCase();
+    if (method == 'POST' || method == 'PUT' || method == 'PATCH') {
       headers['Content-Type'] = 'application/json';
     }
 
