@@ -39,10 +39,10 @@ class PaddleError extends Error with EquatableMixin {
 
 @JsonSerializable()
 class PaddleApiError extends Error with EquatableMixin {
-  final List<PaddleError> errors;
+  final PaddleError error;
   final Map<String, dynamic>? meta;
 
-  PaddleApiError({required this.errors, this.meta});
+  PaddleApiError({required this.error, this.meta});
 
   factory PaddleApiError.fromJson(Map<String, dynamic> json) =>
       _$PaddleApiErrorFromJson(json);
@@ -50,5 +50,5 @@ class PaddleApiError extends Error with EquatableMixin {
   Map<String, dynamic> toJson() => _$PaddleApiErrorToJson(this);
 
   @override
-  List<Object?> get props => [errors, meta];
+  List<Object?> get props => [error, meta];
 }

@@ -28,12 +28,9 @@ Map<String, dynamic> _$PaddleErrorToJson(PaddleError instance) =>
 
 PaddleApiError _$PaddleApiErrorFromJson(Map<String, dynamic> json) =>
     PaddleApiError(
-      errors:
-          (json['errors'] as List<dynamic>)
-              .map((e) => PaddleError.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      error: PaddleError.fromJson(json['error'] as Map<String, dynamic>),
       meta: json['meta'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$PaddleApiErrorToJson(PaddleApiError instance) =>
-    <String, dynamic>{'errors': instance.errors, 'meta': instance.meta};
+    <String, dynamic>{'error': instance.error, 'meta': instance.meta};
