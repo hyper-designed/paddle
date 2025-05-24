@@ -219,7 +219,7 @@ final class NonCatalogCompleteTransactionItem extends MiniTransactionItem {
 final class TransactionsClient {
   final TransactionsApi api;
 
-  TransactionsClient(this.api);
+  const TransactionsClient(this.api);
 
   /// Returns a transaction using its ID.
   ///
@@ -234,7 +234,9 @@ final class TransactionsClient {
 
     final response = await api.getTransaction(id, queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return Resource<Transaction>.fromJson(
       response.body!,
@@ -279,7 +281,9 @@ final class TransactionsClient {
 
     final response = await api.listTransactions(queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return TransactionList.fromJson(response.body!);
   }
@@ -324,7 +328,9 @@ final class TransactionsClient {
 
     final response = await api.createTransaction(body, queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
 
     return Resource<Transaction>.fromJson(

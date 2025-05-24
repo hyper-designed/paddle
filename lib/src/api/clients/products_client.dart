@@ -34,7 +34,7 @@ final class ProductOrderBy extends OrderBy<ProductOrderField> {
 final class ProductsClient {
   final ProductsApi api;
 
-  ProductsClient(this.api);
+  const ProductsClient(this.api);
 
   Future<Resource<Product>> getProduct(
     String id, {
@@ -46,7 +46,9 @@ final class ProductsClient {
 
     final response = await api.getProduct(id, queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return Resource<Product>.fromJson(
       response.body!,
@@ -76,7 +78,9 @@ final class ProductsClient {
     };
     final response = await api.listProducts(queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return ProductList.fromJson(response.body!);
   }

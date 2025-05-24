@@ -23,12 +23,14 @@ final class CustomerOrderBy extends OrderBy<CustomerOrderField> {
 final class CustomersClient {
   final CustomersApi api;
 
-  CustomersClient(this.api);
+  const CustomersClient(this.api);
 
   Future<Resource<Customer>> getCustomer(String id) async {
     final response = await api.getCustomer(id);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return Resource<Customer>.fromJson(
       response.body!,
@@ -57,7 +59,9 @@ final class CustomersClient {
 
     final response = await api.listCustomers(queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return CustomerList.fromJson(response.body!);
   }
@@ -72,7 +76,9 @@ final class CustomersClient {
 
     final response = await api.createCustomerPortalSession(customerId, body);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return CustomerPortalSession.fromJson(response.body!);
   }

@@ -41,7 +41,7 @@ final class SubscriptionOrderBy extends OrderBy<SubscriptionOrderField> {
 final class SubscriptionsClient {
   final SubscriptionsApi api;
 
-  SubscriptionsClient(this.api);
+  const SubscriptionsClient(this.api);
 
   Future<Resource<Subscription>> getSubscription(
     String id, {
@@ -53,7 +53,9 @@ final class SubscriptionsClient {
 
     final response = await api.getSubscription(id, queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return Resource<Subscription>.fromJson(
       response.body!,
@@ -90,7 +92,9 @@ final class SubscriptionsClient {
 
     final response = await api.listSubscriptions(queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return SubscriptionList.fromJson(response.body!);
   }
@@ -105,7 +109,9 @@ final class SubscriptionsClient {
 
     final response = await api.cancelSubscription(id, body);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
 
     return Resource<Product>.fromJson(

@@ -36,7 +36,7 @@ final class PriceOrderBy extends OrderBy<PriceOrderField> {
 final class PricesClient {
   final PricesApi api;
 
-  PricesClient(this.api);
+  const PricesClient(this.api);
 
   Future<Resource<Price>> getPrice(
     String id, {
@@ -48,7 +48,9 @@ final class PricesClient {
 
     final response = await api.getPrice(id, queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return Resource<Price>.fromJson(
       response.body!,
@@ -80,7 +82,9 @@ final class PricesClient {
     };
     final response = await api.listPrices(queryParams);
     if (!response.isSuccessful) {
-      throw PaddleApiError.fromJson(response.body!);
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
     }
     return PriceList.fromJson(response.body!);
   }
