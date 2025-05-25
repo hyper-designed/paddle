@@ -188,7 +188,6 @@ TransactionDetails _$TransactionDetailsFromJson(Map<String, dynamic> json) =>
       totals: TransactionTotals.fromJson(
         json['totals'] as Map<String, dynamic>,
       ),
-      currencyCode: json['currency_code'] as String,
       adjustedTotals: AdjustedTotals.fromJson(
         json['adjusted_totals'] as Map<String, dynamic>,
       ),
@@ -210,7 +209,6 @@ Map<String, dynamic> _$TransactionDetailsToJson(TransactionDetails instance) =>
     <String, dynamic>{
       'tax_rates_used': instance.taxRatesUsed,
       'totals': instance.totals,
-      'currency_code': instance.currencyCode,
       'adjusted_totals': instance.adjustedTotals,
       'payout_totals': instance.payoutTotals,
       'adjusted_payout_totals': instance.adjustedPayoutTotals,
