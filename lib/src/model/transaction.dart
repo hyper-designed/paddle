@@ -387,11 +387,6 @@ final class TransactionDetails with EquatableMixin {
   /// and total amounts.
   final TransactionTotals totals;
 
-  /// Three-letter ISO 4217 currency code of the currency used
-  /// for this transaction.
-  @JsonKey(name: 'currency_code')
-  final String currencyCode;
-
   /// Breakdown of the totals for a transaction after adjustments.
   @JsonKey(name: 'adjusted_totals')
   final AdjustedTotals adjustedTotals;
@@ -412,7 +407,6 @@ final class TransactionDetails with EquatableMixin {
   const TransactionDetails({
     required this.taxRatesUsed,
     required this.totals,
-    required this.currencyCode,
     required this.adjustedTotals,
     required this.payoutTotals,
     required this.adjustedPayoutTotals,
@@ -427,7 +421,6 @@ final class TransactionDetails with EquatableMixin {
   List<Object?> get props => [
     taxRatesUsed,
     totals,
-    currencyCode,
     adjustedTotals,
     payoutTotals,
     adjustedPayoutTotals,
