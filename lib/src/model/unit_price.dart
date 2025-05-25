@@ -21,12 +21,7 @@ class UnitPrice with EquatableMixin {
   factory UnitPrice.fromJson(Map<String, dynamic> json) =>
       _$UnitPriceFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final json = _$UnitPriceToJson(this);
-    // Convert amount from string to integer for API compatibility
-    json['amount'] = int.parse(amount);
-    return json;
-  }
+  Map<String, dynamic> toJson() => _$UnitPriceToJson(this);
 
   @override
   List<Object?> get props => [amount, currencyCode];

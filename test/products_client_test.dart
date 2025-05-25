@@ -39,38 +39,41 @@ void main() {
       }
     });
 
-    test('listProducts with include parameter returns products', () async {
-      // Call the API to list products with prices included
-      final result = await client.products.listProducts(
-        include: [ProductInclude.prices],
-      );
+    test(
+      'listProducts with include parameter returns products & prices',
+      () async {
+        // Call the API to list products with prices included
+        final result = await client.products.listProducts(
+          include: [ProductInclude.prices],
+        );
 
-      // Verify the result
-      expect(result, isA<ProductList>());
+        // Verify the result
+        expect(result, isA<ProductList>());
 
-      // Print some info about the returned products
-      print('Number of products: ${result.data.length}');
+        // Print some info about the returned products
+        print('Number of products: ${result.data.length}');
 
-      expect(result.data, isNotEmpty);
+        expect(result.data, isNotEmpty);
 
-      final product = result.data.first;
-      print('First product:');
-      print('  ID: ${product.id}');
-      print('  Name: ${product.name}');
-      print('  Status: ${product.status}');
+        final product = result.data.first;
+        print('First product:');
+        print('  ID: ${product.id}');
+        print('  Name: ${product.name}');
+        print('  Status: ${product.status}');
 
-      expect(product.prices, isNotNull);
-      expect(product.prices, isNotEmpty);
+        expect(product.prices, isNotNull);
+        expect(product.prices, isNotEmpty);
 
-      // Print prices for the first product
-      print('Prices for the first product:');
-      for (final price in result.data.first.prices!) {
-        print('  Price ID: ${price.id}');
-        print('  Description: ${price.description}');
-        print('  Type: ${price.type}');
-        print('  Unit Price: ${price.unitPrice}');
-      }
-    });
+        // Print prices for the first product
+        print('Prices for the first product:');
+        for (final price in result.data.first.prices!) {
+          print('  Price ID: ${price.id}');
+          print('  Description: ${price.description}');
+          print('  Type: ${price.type}');
+          print('  Unit Price: ${price.unitPrice}');
+        }
+      },
+    );
 
     test('getProduct returns a single product', () async {
       // First, list products to get a valid product ID
