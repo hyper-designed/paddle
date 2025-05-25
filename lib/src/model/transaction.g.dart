@@ -183,7 +183,7 @@ TransactionDetails _$TransactionDetailsFromJson(Map<String, dynamic> json) =>
     TransactionDetails(
       taxRatesUsed:
           (json['tax_rates_used'] as List<dynamic>)
-              .map((e) => e as String)
+              .map((e) => TaxRate.fromJson(e as Map<String, dynamic>))
               .toList(),
       totals: TransactionTotals.fromJson(
         json['totals'] as Map<String, dynamic>,
@@ -214,6 +214,32 @@ Map<String, dynamic> _$TransactionDetailsToJson(TransactionDetails instance) =>
       'adjusted_totals': instance.adjustedTotals,
       'payout_totals': instance.payoutTotals,
       'adjusted_payout_totals': instance.adjustedPayoutTotals,
+    };
+
+TaxRate _$TaxRateFromJson(Map<String, dynamic> json) => TaxRate(
+  taxRate: json['tax_rate'] as String,
+  totals: TaxRateTotals.fromJson(json['totals'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$TaxRateToJson(TaxRate instance) => <String, dynamic>{
+  'tax_rate': instance.taxRate,
+  'totals': instance.totals,
+};
+
+TaxRateTotals _$TaxRateTotalsFromJson(Map<String, dynamic> json) =>
+    TaxRateTotals(
+      subtotal: json['subtotal'] as String,
+      tax: json['tax'] as String,
+      total: json['total'] as String,
+      discount: json['discount'] as String,
+    );
+
+Map<String, dynamic> _$TaxRateTotalsToJson(TaxRateTotals instance) =>
+    <String, dynamic>{
+      'subtotal': instance.subtotal,
+      'tax': instance.tax,
+      'total': instance.total,
+      'discount': instance.discount,
     };
 
 TransactionTotals _$TransactionTotalsFromJson(Map<String, dynamic> json) =>

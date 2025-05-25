@@ -381,7 +381,7 @@ mixin FeesAndEarningsMixin {
 final class TransactionDetails with EquatableMixin {
   /// List of tax rates applied for this transaction.
   @JsonKey(name: 'tax_rates_used')
-  final List<String> taxRatesUsed;
+  final List<TaxRate> taxRatesUsed;
 
   /// Calculated totals for the transaction, including subtotal, discount, tax,
   /// and total amounts.
@@ -432,6 +432,53 @@ final class TransactionDetails with EquatableMixin {
     payoutTotals,
     adjustedPayoutTotals,
   ];
+}
+
+@JsonSerializable()
+final class TaxRate with EquatableMixin {
+  /// Rate used to calculate tax for this transaction.
+  @JsonKey(name: 'tax_rate')
+  final String taxRate;
+
+  /// Calculated totals for the tax applied to this transaction.
+  @JsonKey(name: 'totals')
+  final TaxRateTotals totals;
+
+  const TaxRate({required this.taxRate, required this.totals});
+
+  factory TaxRate.fromJson(Map<String, dynamic> json) =>
+      _$TaxRateFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TaxRateToJson(this);
+
+  @override
+  List<Object?> get props => [taxRate, totals];
+}
+
+/// Calculated totals for the tax applied to this transaction.
+@JsonSerializable()
+final class TaxRateTotals extends BaseTotals {
+  /// Total discount as a result of any discounts applied.
+  /// Except for percentage discounts, Paddle applies tax to discounts based
+  /// on the line item price.tax_mode.
+  /// If price.tax_mode for a line item is internal, Paddle removes
+  /// tax from the discount applied.
+  final String discount;
+
+  const TaxRateTotals({
+    required super.subtotal,
+    required super.tax,
+    required super.total,
+    required this.discount,
+  });
+
+  factory TaxRateTotals.fromJson(Map<String, dynamic> json) =>
+      _$TaxRateTotalsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TaxRateTotalsToJson(this);
+
+  @override
+  List<Object?> get props => [...super.props, discount];
 }
 
 /// Totals for a transaction including subtotal, discount, tax, and total.
