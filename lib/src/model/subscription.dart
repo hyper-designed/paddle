@@ -121,6 +121,7 @@ final class Subscription extends ResourceData {
   /// Paddle ID of the transaction that this subscription is for. This is not
   /// always available. This is only available when passed through webhook
   /// events.
+  @JsonKey(name: 'transaction_id')
   final String? transactionId;
 
   /// Supported three-letter ISO 4217 currency code. Transactions for this

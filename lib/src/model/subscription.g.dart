@@ -24,7 +24,7 @@ Subscription _$SubscriptionFromJson(Map<String, dynamic> json) => Subscription(
   customerId: json['customer_id'] as String,
   addressId: json['address_id'] as String,
   businessId: json['business_id'] as String?,
-  transactionId: json['transactionId'] as String?,
+  transactionId: json['transaction_id'] as String?,
   currencyCode: json['currency_code'] as String,
   startedAt: _$JsonConverterFromJson<String, DateTime>(
     json['started_at'],
@@ -107,7 +107,7 @@ Map<String, dynamic> _$SubscriptionToJson(Subscription instance) =>
       'customer_id': instance.customerId,
       'address_id': instance.addressId,
       'business_id': instance.businessId,
-      'transactionId': instance.transactionId,
+      'transaction_id': instance.transactionId,
       'currency_code': instance.currencyCode,
       'started_at': _$JsonConverterToJson<String, DateTime>(
         instance.startedAt,
