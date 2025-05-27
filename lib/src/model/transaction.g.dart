@@ -77,7 +77,7 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
       'created_at': const DateTimeISO8601Converter().toJson(instance.createdAt),
       'updated_at': const DateTimeISO8601Converter().toJson(instance.updatedAt),
       'import_meta': instance.importMeta,
-      'status': _$TransactionStatusEnumMap[instance.status]!,
+      'status': instance.status,
       'customer_id': instance.customerId,
       'address_id': instance.addressId,
       'business_id': instance.businessId,
@@ -109,7 +109,7 @@ const _$TransactionStatusEnumMap = {
   TransactionStatus.paid: 'paid',
   TransactionStatus.completed: 'completed',
   TransactionStatus.canceled: 'canceled',
-  TransactionStatus.pastDue: 'pastDue',
+  TransactionStatus.pastDue: 'past_due',
 };
 
 const _$TransactionOriginEnumMap = {

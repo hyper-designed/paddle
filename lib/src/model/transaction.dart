@@ -52,7 +52,10 @@ enum TransactionStatus {
   /// Transaction is past due. Occurs for automatically-collected transactions
   /// when the related subscription is in dunning, and for manually-collected
   /// transactions when payment terms have elapsed.
-  pastDue,
+  @JsonValue('past_due')
+  pastDue;
+
+  String toJson() => _$TransactionStatusEnumMap[this]!;
 }
 
 /// Describes how this transaction was created.
