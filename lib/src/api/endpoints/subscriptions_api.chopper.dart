@@ -50,6 +50,22 @@ final class _$SubscriptionsApi extends SubscriptionsApi {
   }
 
   @override
+  Future<Response<Map<String, dynamic>>> updateSubscription(
+    String id, [
+    Map<String, dynamic>? body,
+  ]) {
+    final Uri $url = Uri.parse('/subscriptions/${id}');
+    final $body = body;
+    final Request $request = Request(
+      'PATCH',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<Map<String, dynamic>, Map<String, dynamic>>($request);
+  }
+
+  @override
   Future<Response<Map<String, dynamic>>> cancelSubscription(
     String id, [
     Map<String, dynamic>? body,

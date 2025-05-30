@@ -22,6 +22,31 @@ abstract class SubscriptionsApi extends ChopperService {
     @QueryMap() Map<String, dynamic>? params,
   ]);
 
+  /// Updates a subscription using its ID.
+  ///
+  /// When making changes to items or the next billing date for a subscription,
+  /// you must include the proration_billing_mode field to tell Paddle how to
+  /// bill for those changes.
+  ///
+  /// Send the complete list of items that you'd like to be on a
+  /// subscription — including existing items.
+  /// If you omit items, they're removed from the subscription.
+  ///
+  /// For each item, send price_id and quantity.
+  /// Paddle responds with the full price object for each price.
+  /// If you're updating an existing item, you can omit the quantity if
+  /// you don't want to update it.
+  ///
+  /// If successful, your response includes a copy of the updated subscription
+  /// entity.
+  /// When an update results in an immediate charge, responses may take longer
+  /// than usual while a payment attempt is processed.
+  @PATCH(path: '/subscriptions/{subscription_id}')
+  Future<Response<JsonMap>> updateSubscription(
+    @Path('subscription_id') String id, [
+    @Body() Map<String, dynamic>? body,
+  ]);
+
   /// Cancels a subscription using its ID.
   ///
   /// By default, active subscriptions are canceled at the end of the billing

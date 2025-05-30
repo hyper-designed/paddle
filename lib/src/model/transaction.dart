@@ -338,7 +338,7 @@ final class Proration with EquatableMixin {
 }
 
 /// Base class for all transaction total objects
-@JsonSerializable()
+@JsonSerializable(createFactory: false, createToJson: false)
 class BaseTotals with EquatableMixin {
   /// Subtotal before discount, tax, and deductions.
   /// If an item, unit price multiplied by quantity.

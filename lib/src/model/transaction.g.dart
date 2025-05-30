@@ -166,19 +166,6 @@ Map<String, dynamic> _$ProrationToJson(Proration instance) => <String, dynamic>{
   'billing_period': instance.billingPeriod,
 };
 
-BaseTotals _$BaseTotalsFromJson(Map<String, dynamic> json) => BaseTotals(
-  subtotal: json['subtotal'] as String,
-  tax: json['tax'] as String,
-  total: json['total'] as String,
-);
-
-Map<String, dynamic> _$BaseTotalsToJson(BaseTotals instance) =>
-    <String, dynamic>{
-      'subtotal': instance.subtotal,
-      'tax': instance.tax,
-      'total': instance.total,
-    };
-
 TransactionDetails _$TransactionDetailsFromJson(Map<String, dynamic> json) =>
     TransactionDetails(
       taxRatesUsed:
