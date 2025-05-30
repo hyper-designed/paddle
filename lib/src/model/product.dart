@@ -138,6 +138,22 @@ final class Product extends ResourceData {
     }
     return _$ProductFromJson(json);
   }
+
+  Product filteredByPriceType(PriceType priceType) => Product(
+    id: id,
+    name: name,
+    description: description,
+    status: status,
+    type: type,
+    taxCategory: taxCategory,
+    imageUrl: imageUrl,
+    customData: customData,
+    importMeta: importMeta,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+    prices: prices?.where((price) => price.type == priceType).toList(),
+  );
+
   @override
   Map<String, dynamic> toJson() => _$ProductToJson(this);
 
