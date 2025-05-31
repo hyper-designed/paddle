@@ -356,8 +356,6 @@ final class SubscriptionsClient {
       if (discount != null) 'discount': discount.toJson(),
       if (collectionMode != null) 'collection_mode': collectionMode.name,
       if (billingDetails != null) 'billing_details': billingDetails.toJson(),
-      // Set scheduled_change to null to remove scheduled changes as per API docs
-      'scheduled_change': null,
       if (items != null) 'items': items.map((item) => item.toJson()).toList(),
       if (customData != null) 'custom_data': customData,
       if (prorationBillingMode != null)
