@@ -14,6 +14,7 @@ export 'period.dart';
 export 'price.dart';
 export 'product.dart';
 export 'resource.dart';
+export 'sort_direction.dart';
 export 'subscription.dart';
 export 'transaction.dart';
 export 'unit_price.dart';
