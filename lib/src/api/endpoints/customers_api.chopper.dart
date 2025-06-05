@@ -50,6 +50,16 @@ final class _$CustomersApi extends CustomersApi {
   }
 
   @override
+  Future<Response<Map<String, dynamic>>> createCustomer(
+    Map<String, dynamic> body,
+  ) {
+    final Uri $url = Uri.parse('/customers');
+    final $body = body;
+    final Request $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<Map<String, dynamic>, Map<String, dynamic>>($request);
+  }
+
+  @override
   Future<Response<Map<String, dynamic>>> createCustomerPortalSession(
     String customerId, [
     Map<String, dynamic>? body,
