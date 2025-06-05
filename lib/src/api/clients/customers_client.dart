@@ -66,6 +66,34 @@ final class CustomersClient {
     return CustomerList.fromJson(response.body!);
   }
 
+  /// Creates a new customer.
+  ///
+  /// If successful, your response includes a copy of the new customer entity.
+  Future<Resource<Customer>> createCustomer({
+    required String email,
+    String? name,
+    Map<String, dynamic>? customData,
+    String? locale,
+  }) async {
+    final Map<String, dynamic> body = {
+      'email': email,
+      if (name != null) 'name': name,
+      if (customData != null) 'custom_data': customData,
+      if (locale != null) 'locale': locale,
+    };
+
+    final response = await api.createCustomer(body);
+    if (!response.isSuccessful) {
+      throw PaddleApiError.fromJson(
+        Map<String, dynamic>.from(response.error as Map),
+      );
+    }
+    return Resource<Customer>.fromJson(
+      response.body!,
+      (json) => Customer.fromJson(json),
+    );
+  }
+
   Future<CustomerPortalSession> createCustomerPortalSession(
     String customerId, {
     List<String>? subscriptionIds,

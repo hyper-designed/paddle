@@ -22,6 +22,12 @@ abstract class CustomersApi extends ChopperService {
     @QueryMap() Map<String, dynamic>? params,
   ]);
 
+  /// Creates a new customer.
+  ///
+  /// If successful, your response includes a copy of the new customer entity.
+  @POST(path: '/customers')
+  Future<Response<JsonMap>> createCustomer(@Body() Map<String, dynamic> body);
+
   /// Creates a customer portal session for a customer.
   ///
   /// The customer portal is a secure, Paddle-hosted site that allows customers
