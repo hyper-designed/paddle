@@ -377,7 +377,7 @@ final class SubscriptionsClient {
     );
   }
 
-  Future<Resource<Product>> cancelSubscription(
+  Future<Resource<Subscription>> cancelSubscription(
     String id, {
     EffectiveFrom? effectiveFrom,
   }) async {
@@ -392,9 +392,9 @@ final class SubscriptionsClient {
       );
     }
 
-    return Resource<Product>.fromJson(
+    return Resource<Subscription>.fromJson(
       response.body!,
-      (json) => Product.fromJson(json),
+      (json) => Subscription.fromJson(json),
     );
   }
 }
