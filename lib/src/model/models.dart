@@ -1,5 +1,6 @@
 library;
 
+export 'address.dart';
 export 'api_error.dart';
 export 'billing_period.dart';
 export 'customer.dart';

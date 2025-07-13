@@ -6,14 +6,13 @@ import 'env.dart';
 void main() {
   late PaddleClient client;
 
-  setUp(() {
+  setUpAll(() {
     if (apiKey == null) {
       fail(
         'PADDLE_API_KEY environment variable not set. Please set it to run this test.',
       );
     }
 
-    // Initialize the Paddle client with sandbox mode
     client = PaddleClient(apiKey: apiKey!, sandbox: true, enableLogging: true);
   });
 

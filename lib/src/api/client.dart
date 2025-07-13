@@ -44,6 +44,10 @@ final class PaddleClient {
 
   CustomersClient get customers => _customers!;
 
+  AddressesClient? _addresses;
+
+  AddressesClient get addresses => _addresses!;
+
   TransactionsClient? _transactions;
 
   TransactionsClient get transactions => _transactions!;
@@ -54,6 +58,7 @@ final class PaddleClient {
       ProductsApi.create(),
       PricesApi.create(),
       CustomersApi.create(),
+      AddressesApi.create(),
       TransactionsApi.create(),
     ];
     _chopperClient = ChopperClient(
@@ -73,6 +78,7 @@ final class PaddleClient {
     _products = ProductsClient(_chopperClient.getService());
     _prices = PricesClient(_chopperClient.getService());
     _customers = CustomersClient(_chopperClient.getService());
+    _addresses = AddressesClient(_chopperClient.getService());
     _transactions = TransactionsClient(_chopperClient.getService());
 
     if (enableLogging) {
