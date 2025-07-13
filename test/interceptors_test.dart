@@ -28,7 +28,10 @@ void main() {
 
       await interceptor.intercept(chain);
 
-      expect(chain.lastRequest?.headers['Content-Type'], equals('application/json'));
+      expect(
+        chain.lastRequest?.headers['Content-Type'],
+        equals('application/json'),
+      );
       expect(chain.lastRequest?.headers['Paddle-Version'], equals('1'));
     });
 
@@ -38,7 +41,10 @@ void main() {
 
       await interceptor.intercept(chain);
 
-      expect(chain.lastRequest?.headers['Content-Type'], equals('application/json'));
+      expect(
+        chain.lastRequest?.headers['Content-Type'],
+        equals('application/json'),
+      );
       expect(chain.lastRequest?.headers['Paddle-Version'], equals('1'));
     });
 
@@ -48,7 +54,10 @@ void main() {
 
       await interceptor.intercept(chain);
 
-      expect(chain.lastRequest?.headers['Content-Type'], equals('application/json'));
+      expect(
+        chain.lastRequest?.headers['Content-Type'],
+        equals('application/json'),
+      );
       expect(chain.lastRequest?.headers['Paddle-Version'], equals('1'));
     });
 
@@ -73,8 +82,14 @@ void main() {
 
       await interceptor.intercept(chain);
 
-      expect(chain.lastRequest?.headers['Custom-Header'], equals('custom-value'));
-      expect(chain.lastRequest?.headers['Content-Type'], equals('application/json'));
+      expect(
+        chain.lastRequest?.headers['Custom-Header'],
+        equals('custom-value'),
+      );
+      expect(
+        chain.lastRequest?.headers['Content-Type'],
+        equals('application/json'),
+      );
       expect(chain.lastRequest?.headers['Paddle-Version'], equals('1'));
     });
   });
@@ -93,7 +108,10 @@ void main() {
 
       await interceptor.intercept(chain);
 
-      expect(chain.lastRequest?.headers['Authorization'], equals('Bearer $apiKey'));
+      expect(
+        chain.lastRequest?.headers['Authorization'],
+        equals('Bearer $apiKey'),
+      );
     });
 
     test('preserves existing headers', () async {
@@ -107,8 +125,14 @@ void main() {
 
       await interceptor.intercept(chain);
 
-      expect(chain.lastRequest?.headers['Custom-Header'], equals('custom-value'));
-      expect(chain.lastRequest?.headers['Authorization'], equals('Bearer $apiKey'));
+      expect(
+        chain.lastRequest?.headers['Custom-Header'],
+        equals('custom-value'),
+      );
+      expect(
+        chain.lastRequest?.headers['Authorization'],
+        equals('Bearer $apiKey'),
+      );
     });
   });
 }
