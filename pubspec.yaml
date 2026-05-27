@@ -1,7 +1,7 @@
 name: paddle
 description: A Dart package for Paddle, a payment processing service.
 
-version: 0.1.0
+version: 0.1.1
 
 repository: https://github.com/hyper-designed/paddle
 

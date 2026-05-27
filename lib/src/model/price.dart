@@ -42,6 +42,11 @@ enum TaxMode {
 
   /// Prices are inclusive of tax.
   internal,
+
+  /// Tax inclusion is determined automatically based on the customer's
+  /// location at checkout. Added by Paddle on 2025-10-29 as a non-breaking
+  /// API change.
+  location,
 }
 
 /// Price entities describe what customers pay for products and how often

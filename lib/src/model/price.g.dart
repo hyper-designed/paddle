@@ -87,6 +87,7 @@ const _$TaxModeEnumMap = {
   TaxMode.accountSetting: 'account_setting',
   TaxMode.external: 'external',
   TaxMode.internal: 'internal',
+  TaxMode.location: 'location',
 };
 
 const _$EntityStatusEnumMap = {
